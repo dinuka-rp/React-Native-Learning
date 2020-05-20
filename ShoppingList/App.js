@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { v4 as uuidv4 } from 'uuid';
 import Header from './components/Header';
 import ListItem from './components/ListItem'
-import { v4 as uuidv4 } from 'uuid';
+import AddItem from './components/AddItem'
+import { uuid } from 'uuidv4';
 
 const App = () => {
   const [items, setItems] = useState([
@@ -18,10 +20,17 @@ const App = () => {
     });
   }
 
+  const addItem = ( text ) => {
+    setItems( prevItems => {
+      return [{ id: uuidv4(), text: text }, ...prevItems];
+    });
+  }
+
 
   return (
     <View style={styles.container}>
       <Header title='Shopping List'/>
+      <AddItem addItem={addItem} />
       <FlatList
         data={items}
         renderItem={({item}) => (
