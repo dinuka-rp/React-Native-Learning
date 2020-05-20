@@ -1,14 +1,17 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const Header = () => {
+const Header = ( props ) => {
   return (
     <View style={styles.header}>
-      <Text style={styles.text}>Shopping List</Text>
+      <Text style={styles.text}>{props.title}</Text>
     </View>
   );
 };
 
+Header.defaultProps = {         // displays these values, if props aren't passed in
+    title: 'Shopping List',
+};
 
 const styles = StyleSheet.create({
   header: {
